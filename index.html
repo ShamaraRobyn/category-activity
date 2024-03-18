@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+ <link rel="icon" type="image/x-icon" href="kittl-favicon.ico">
+<style>
+body{
+font-family: "Poppins", sans-serif;
+}
+
+.category {
+  width: 350px;
+  min-height: 70px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+}
+.word {
+  width: 300px;
+  min-height: 10px;
+  padding: 2px;
+}
+
+.words-container {
+width: 30%;
+height: 100%;
+display: inline-block;
+position: relative;
+overflow-y: scroll;
+overflow-x: hidden;
+float: left;
+text-align: center;
+padding-right: 20px;
+
+}
+.category-container {
+width: 60%;
+height: 100%;
+display: inline-block;
+position: relative;
+padding-left: 10px;
+overflow-y: scroll;
+overflow-x: hidden;
+}
+.category {
+margin-bottom: 10px;
+}
+.main {
+position: absolute;
+height: 90%;
+width: 100%;
+overflow: hidden;
+}
+.add-word {
+position: absolute;
+bottom: 10px;
+padding: 10px;
+}
+.form-label {
+padding-right: 5px;
+}
+.footer {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  }
+::-webkit-scrollbar { display: none; }
+</style>
+<script>
+
+var _wordIndex = 12;
+    
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+
+function addWord(ev) {
+  var text = document.getElementById("new-word").value;
+  var container = document.getElementById("words-container");
+  var template = document.getElementById("drag1").cloneNode(true);
+
+    template.innerHTML = "<p>"+ text + "</p>";
+    template.setAttribute("id","drag"+_wordIndex++);
+    container.appendChild(template);
+    template.scrollIntoView();
+}
+
+</script>
+</head>
+<body>
+
+<div class="main">
+<div id="words-container" class="words-container">
+<div id="drag1" class="word" draggable="true" ondragstart="drag(event)"><p>Drawing</p></div>
+<div id="drag2" class="word" draggable="true" ondragstart="drag(event)"><p>Painting</p></div>
+<div id="drag3" class="word" draggable="true" ondragstart="drag(event)"><p>Playing together</p></div>
+<div id="drag4" class="word" draggable="true" ondragstart="drag(event)"><p>Tidying up</p></div>
+<div id="drag5" class="word" draggable="true" ondragstart="drag(event)"><p>Eating lunch</p></div>
+<div id="drag6" class="word" draggable="true" ondragstart="drag(event)"><p>Reading</p></div>
+<div id="drag7" class="word" draggable="true" ondragstart="drag(event)"><p>Numbers</p></div>
+<div id="drag8" class="word" draggable="true" ondragstart="drag(event)"><p>PE</p></div>
+<div id="drag9" class="word" draggable="true" ondragstart="drag(event)"><p>Music</p></div>
+<div id="drag10" class="word" draggable="true" ondragstart="drag(event)"><p>Whiteboard</p></div>
+<div id="drag11" class="word" draggable="true" ondragstart="drag(event)"><p>Dancing</p></div>
+</div>
+
+<div class="category-container">
+<p>Drag the words into the boxes:</p>
+<span>Very Fun</span>
+<div id="div1" class="category" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<span>Fun</span>
+<div id="div2" class="category" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<span>Tricky</span>
+<div id="div3" class="category" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<span>Boring</span>
+<div id="div4" class="category" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<span>Bad or Yucky</span>
+<div id="div5" class="category" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+</div>
+
+</div> <!-- main -->
+
+<div class="add-word">
+<form action="javascript:addWord();" id="add-word">
+<label class="form-label" for="new-word">Add another word: </label>
+<input type="text" id="new-word" />
+<input type="submit" hidden />
+</div>
+
+ <div class="footer"><a href="https://www.kittl.com">Favicon logo created with www.kittl.com</a></div>
+</body>
+</html>
+
